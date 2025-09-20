@@ -1,764 +1,808 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Happy Birthday My Love</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <style>
-      :root {
-        --pink: #ff4d6d;
-        --purple: #8b5cf6;
-        --bubble: #fff0f5;
-        --glass: rgba(255, 255, 255, 0.65);
-      }
-      html,
-      body {
-        font-family: "Poppins", sans-serif;
-        scroll-behavior: smooth;
-      }
-      /* Floaty hero animation */
-      .floaty {
-        animation: float 3s ease-in-out infinite;
-      }
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-      .heart {
-        color: var(--pink);
-        animation: heartbeat 1.6s ease-in-out infinite;
-      }
-      @keyframes heartbeat {
-        0% {
-          transform: scale(1);
-        }
-        25% {
-          transform: scale(1.12);
-        }
-        50% {
-          transform: scale(1);
-        }
-        75% {
-          transform: scale(1.08);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
 
-      /* --- BALLOONS --- */
-      .balloon-layer {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 10;
-        overflow: hidden;
-      }
-      .balloon {
-        position: absolute;
-        bottom: -120px;
-        width: 28px;
-        height: 38px;
-        border-radius: 60% 60% 60% 60%/70% 70% 50% 50%;
-        box-shadow: inset -6px -12px 0 rgba(0, 0, 0, 0.06);
-        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
-      }
-      .balloon:after {
-        content: "";
-        position: absolute;
-        bottom: -18px;
-        left: 50%;
-        width: 2px;
-        height: 22px;
-        background: rgba(0, 0, 0, 0.25);
-        transform: translateX(-50%);
-      }
-      .shine {
-        position: absolute;
-        top: 6px;
-        left: 8px;
-        width: 8px;
-        height: 12px;
-        background: rgba(255, 255, 255, 0.65);
-        border-radius: 50%;
-      }
-      @keyframes rise {
-        0% {
-          transform: translateY(0) translateX(0) rotate(0);
-        }
-        100% {
-          transform: translateY(-120vh) translateX(var(--drift)) rotate(6deg);
-        }
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday My Love</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --pink: #ff4d6d;
+      --purple: #8b5cf6;
+      --bubble: #fff0f5;
+      --glass: rgba(255, 255, 255, 0.65);
+    }
 
-      /* Glassmorphism cards */
-      .glass {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
+    html,
+    body {
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
+    }
 
-      /* Reveal on scroll */
-      .reveal {
-        opacity: 0;
-        transform: translateY(14px);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-      }
-      .reveal.revealed {
-        opacity: 1;
+    /* Floaty hero animation */
+    .floaty {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
 
-      /* Sparkle click */
-      .sparkle {
-        position: fixed;
-        width: 6px;
-        height: 6px;
-        border-radius: 9999px;
-        background: #fff;
-        box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
-        pointer-events: none;
-        animation: spark 0.8s ease-out forwards;
+      50% {
+        transform: translateY(-10px);
       }
-      @keyframes spark {
-        to {
-          transform: translate(var(--sx), var(--sy)) scale(0);
-          opacity: 0;
-        }
+    }
+
+    .heart {
+      color: var(--pink);
+      animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
       }
-    </style>
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
 
-  </head>
-  <body
-    class="bg-gradient-to-br from-pink-50 via-rose-50 to-purple-100 min-h-screen text-gray-800"
-  >
-    <!-- Floating balloons layer -->
-    <div id="balloons" class="balloon-layer" aria-hidden="true"></div>
+      25% {
+        transform: scale(1.12);
+      }
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div
-          class="mt-4 flex items-center justify-between rounded-2xl border border-white/40 bg-white/70 backdrop-blur-md px-4 py-3 shadow-lg"
-        >
-          <a href="#home" class="flex items-center gap-2">
-            <span class="text-2xl font-bold text-pink-500"
-              ><i class="fa-solid fa-heart mr-1"></i>Happy Birthday</span
-            >
-          </a>
-          <div class="hidden md:flex items-center gap-6 text-sm">
-            <a href="#home" class="hover:text-pink-600">Home</a>
-            <a href="#about" class="hover:text-pink-600">About</a>
-            <a href="#gallery" class="hover:text-pink-600">Gallery</a>
-            <a href="#wishes" class="hover:text-pink-600">Wishes</a>
-          </div>
-          <button
-            id="mobileBtn"
-            class="md:hidden text-gray-700"
-            aria-label="Buka menu"
-          >
-            <i class="fa-solid fa-bars text-xl"></i>
-          </button>
-        </div>
-      </div>
+      50% {
+        transform: scale(1);
+      }
+
+      75% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* --- BALLOONS --- */
+    .balloon-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 28px;
+      height: 38px;
+      border-radius: 60% 60% 60% 60%/70% 70% 50% 50%;
+      box-shadow: inset -6px -12px 0 rgba(0, 0, 0, 0.06);
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+    }
+
+    .balloon:after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      width: 2px;
+      height: 22px;
+      background: rgba(0, 0, 0, 0.25);
+      transform: translateX(-50%);
+    }
+
+    .shine {
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      width: 8px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 50%;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0);
+      }
+
+      100% {
+        transform: translateY(-120vh) translateX(var(--drift)) rotate(6deg);
+      }
+    }
+
+    /* Glassmorphism cards */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sparkle click */
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+      pointer-events: none;
+      animation: spark 0.8s ease-out forwards;
+    }
+
+    @keyframes spark {
+      to {
+        transform: translate(var(--sx), var(--sy)) scale(0);
+        opacity: 0;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body class="bg-gradient-to-br from-pink-50 via-rose-50 to-purple-100 min-h-screen text-gray-800">
+  <!-- Floating balloons layer -->
+  <div id="balloons" class="balloon-layer" aria-hidden="true"></div>
+  <!-- Musik Happy Birthday -->
+  <audio id="bgm" src="happy-bhirthday.mp3" preload="auto" loop playsinline></audio>
+
+  <!-- Tombol kontrol musik (mengambang) -->
+  <button id="bgmToggle"
+    class="fixed bottom-5 right-5 z-50 rounded-full bg-pink-500 text-white p-3 shadow-xl hover:bg-pink-600 focus:outline-none focus:ring-4 focus:ring-pink-300 opacity-0 transition"
+    aria-pressed="true" title="Jeda/Putar musik">
+    <i class="fa-solid fa-music"></i>
+  </button>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div
-        id="mobileMenu"
-        class="md:hidden mx-4 mt-2 hidden rounded-2xl bg-white/80 p-4 shadow-lg"
-      >
-        <a href="#home" class="block py-2">Home</a>
-        <a href="#about" class="block py-2">About</a>
-        <a href="#gallery" class="block py-2">Gallery</a>
-        <a href="#wishes" class="block py-2">Wishes</a>
+        class="mt-4 flex items-center justify-between rounded-2xl border border-white/40 bg-white/70 backdrop-blur-md px-4 py-3 shadow-lg">
+        <a href="#home" class="flex items-center gap-2">
+          <span class="text-2xl font-bold text-pink-500"><i class="fa-solid fa-heart mr-1"></i>Happy Birthday</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#home" class="hover:text-pink-600">Home</a>
+          <a href="#about" class="hover:text-pink-600">About</a>
+          <a href="#gallery" class="hover:text-pink-600">Gallery</a>
+          <a href="#wishes" class="hover:text-pink-600">Wishes</a>
+        </div>
+        <button id="mobileBtn" class="md:hidden text-gray-700" aria-label="Buka menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
       </div>
-    </nav>
+    </div>
+    <div id="mobileMenu" class="md:hidden mx-4 mt-2 hidden rounded-2xl bg-white/80 p-4 shadow-lg">
+      <a href="#home" class="block py-2">Home</a>
+      <a href="#about" class="block py-2">About</a>
+      <a href="#gallery" class="block py-2">Gallery</a>
+      <a href="#wishes" class="block py-2">Wishes</a>
+    </div>
+  </nav>
 
-    <!-- Hero -->
-    <section id="home" class="pt-28 md:pt-36 pb-16 px-4">
-      <div class="mx-auto max-w-7xl text-center">
+  <!-- Hero -->
+  <section id="home" class="pt-28 md:pt-36 pb-16 px-4">
+    <div class="mx-auto max-w-7xl text-center">
       <div
-  class="floaty mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white/70 shadow-xl backdrop-blur"
->
-  <p>
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><!-- Icon from Akar Icons by Arturo Wibawa - https://github.com/artcoholic/akar-icons/blob/master/LICENSE --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-linejoin="round" d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m3 13l2.914 2.331c1.187.95 2.9.855 3.975-.22v0a2.985 2.985 0 0 1 4.222 0v0a2.985 2.985 0 0 0 3.975.22L21 13"/><path stroke-linejoin="round" d="M12 6a2 2 0 0 1-2-2c0-.876.677-1.576 1.273-2.217L12 1l.727.783C13.323 2.424 14 3.124 14 4a2 2 0 0 1-2 2"/></g></svg>
-  </p>
-</div>
-
-
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Happy Birthday
-          <span class="heart"><i class="fa-solid fa-heart"></i></span>
-        </h1>
-        <p class="mx-auto mb-8 max-w-2xl text-lg md:text-xl text-gray-600">
-          Untuk Pasangan Tercinta, di Hari Spesialmu! Semoga hari ini penuh
-          tawa, pelukan hangat, dan kejutan manis. 💖
+        class="floaty mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white/70 shadow-xl backdrop-blur">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+            viewBox="0 0 24 24"><!-- Icon from Akar Icons by Arturo Wibawa - https://github.com/artcoholic/akar-icons/blob/master/LICENSE -->
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+              <path stroke-linejoin="round" d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <path
+                d="m3 13l2.914 2.331c1.187.95 2.9.855 3.975-.22v0a2.985 2.985 0 0 1 4.222 0v0a2.985 2.985 0 0 0 3.975.22L21 13" />
+              <path stroke-linejoin="round"
+                d="M12 6a2 2 0 0 1-2-2c0-.876.677-1.576 1.273-2.217L12 1l.727.783C13.323 2.424 14 3.124 14 4a2 2 0 0 1-2 2" />
+            </g>
+          </svg>
         </p>
-        <div class="flex justify-center gap-3 md:gap-4">
-          <a
-            href="#about"
-            class="rounded-full bg-pink-500 px-6 py-3 font-medium text-white shadow hover:bg-pink-600"
-            >Tentang Kamu</a
-          >
-          <a
-            href="#gallery"
-            class="rounded-full border border-pink-500 px-6 py-3 font-medium text-pink-500 hover:bg-pink-50"
-            >Kenangan Kita</a
-          >
-          <button
-            id="btnConfetti"
-            class="rounded-full bg-purple-600 px-6 py-3 font-medium text-white shadow hover:bg-purple-700"
-          >
-            Rayakan!
-          </button>
-        </div>
-
-        <!-- Floating chips -->
-        <div class="mt-10 flex flex-wrap justify-center gap-3 text-sm">
-          <span class="glass rounded-full px-4 py-2">#Love</span>
-          <span class="glass rounded-full px-4 py-2">#Birthday</span>
-          <span class="glass rounded-full px-4 py-2">#Forever</span>
-        </div>
       </div>
-    </section>
 
-    <!-- About -->
-    <section id="about" class="py-16 px-4 bg-white/70">
-      <div class="mx-auto max-w-7xl">
-        <h2 class="text-center text-3xl md:text-4xl font-bold mb-12">
-          Tentang <span class="text-pink-500">Kamu</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div class="reveal">
-            <div
-              class="relative mx-auto h-90 w-80 overflow-hidden rounded-full bg-gradient-to-br from-pink-200 to-purple-200 shadow-2xl"
-            >
-              <img
-                src="image/image1.jpg"
-                alt="Foto pasangan tersayang dengan senyuman manis memakai topi ulang tahun"
-                class="h-full w-full object-cover"
-              />
-              <div
-                class="absolute -bottom-2 -right-2 rounded-full bg-pink-500 p-3 text-white shadow-lg"
-              >
-                <i class="fa-solid fa-gift"></i>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-6 reveal">
-            <div class="glass rounded-2xl p-6 shadow-sm">
-              <h3 class="mb-4 text-2xl font-semibold">Data Diri</h3>
-              <div class="grid gap-4">
-                <div class="flex gap-4">
-                  <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
-                    <i class="fa-solid fa-user"></i>
-                  </div>
-                  <div>
-                    <p class="font-medium">Nama Lengkap</p>
-                    <p class="text-gray-600">Nisak Khusnul Khatimah</p>
-                  </div>
-                </div>
-                <div class="flex gap-4">
-                  <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
-                    <i class="fa-solid fa-cake-candles"></i>
-                  </div>
-                  <div>
-                    <p class="font-medium">Tanggal Lahir</p>
-                    <p class="text-gray-600">28 September 2005</p>
-                  </div>
-                </div>
-                <div class="flex gap-4">
-                  <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <div>
-                    <p class="font-medium">Zodiak</p>
-                    <p class="text-gray-600">Libra</p>
-                  </div>
-                </div>
-                <div class="flex gap-4">
-                  <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
-                    <i class="fa-solid fa-heart"></i>
-                  </div>
-                  <div>
-                    <p class="font-medium">Hobi</p>
-                    <p class="text-gray-600">Tidur</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="rounded-2xl bg-purple-50 p-6 shadow-sm">
-              <h3 class="mb-4 text-2xl font-semibold">
-                Hal yang Kusuka Darimu
-              </h3>
-              <ul class="list-disc list-inside space-y-2 text-gray-700">
-                <li>Senyum manismu yang selalu membuat hariku cerah</li>
-                <li>Cara kamu peduli ke diriku</li>
-                <li>Ketulusan hatimu dalam setiap hal yang kamu lakukan</li>
-                <li>Kebiasaan unikmu yang membuatku selalu tersenyum</li>
-                <li>Caramu memahami dan menerima segala kekuranganku</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+        Happy Birthday
+        <span class="heart"><i class="fa-solid fa-heart"></i></span>
+      </h1>
+      <p class="mx-auto mb-8 max-w-2xl text-lg md:text-xl text-gray-600">
+        Untuk Pasangan Tercinta, di Hari Spesialmu! Semoga hari ini penuh
+        tawa, pelukan hangat, dan kejutan manis. 💖
+      </p>
+      <div class="flex justify-center gap-3 md:gap-4">
+        <a href="#about"
+          class="rounded-full bg-pink-500 px-6 py-3 font-medium text-white shadow hover:bg-pink-600">Tentang Kamu</a>
+        <a href="#gallery"
+          class="rounded-full border border-pink-500 px-6 py-3 font-medium text-pink-500 hover:bg-pink-50">Kenangan
+          Kita</a>
+        <button id="btnConfetti"
+          class="rounded-full bg-purple-600 px-6 py-3 font-medium text-white shadow hover:bg-purple-700">
+          Rayakan!
+        </button>
       </div>
-    </section>
 
-    <!-- Gallery -->
-    <section
-      id="gallery"
-      class="py-16 px-4 bg-gradient-to-br from-purple-50 to-pink-50"
-    >
-      <div class="mx-auto max-w-7xl">
-        <h2 class="text-center text-3xl md:text-4xl font-bold mb-3">
-          Kenangan <span class="text-pink-500">Kita</span>
-        </h2>
-        <p class="mx-auto mb-10 max-w-2xl text-center text-gray-600">
-          Momen-momen berharga yang telah kita lalui bersama
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Reusable gallery card -->
-          <template id="tplPhoto">
-            <div
-              class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer"
-            >
-              <div class="h-64 overflow-hidden">
-                <img
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div
-                class="absolute inset-0 flex items-end bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              >
-                <div class="p-4 text-white">
-                  <p class="font-medium caption"></p>
-                  <p class="text-sm date"></p>
-                </div>
-              </div>
-            </div>
-          </template>
-          <div id="gridPhotos" class="contents"></div>
-        </div>
+      <!-- Floating chips -->
+      <div class="mt-10 flex flex-wrap justify-center gap-3 text-sm">
+        <span class="glass rounded-full px-4 py-2">#Love</span>
+        <span class="glass rounded-full px-4 py-2">#Birthday</span>
+        <span class="glass rounded-full px-4 py-2">#Forever</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Wishes -->
-    <!-- Wishes (Amplop dengan popup ucapan) -->
-    <section id="wishes" class="py-16 px-4 bg-white">
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-3">
-          Ucapan <span class="text-pink-500">Spesial</span>
-        </h2>
-        <p class="mb-8 text-gray-600">Klik amplop untuk membuka ucapan ❤️</p>
-
-        <!-- --- Styles khusus amplop (dibatasi di dalam section) --- -->
-        <style>
-          #wishes .envelope-wrap {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-          #wishes .envelope {
-            position: relative;
-            width: 280px;
-            height: 180px;
-            border-radius: 16px;
-            background: linear-gradient(
-              135deg,
-              #fff 0%,
-              #fff5f8 60%,
-              #ffe2ea 100%
-            );
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-            cursor: pointer;
-            transition: transform 0.25s ease;
-          }
-          #wishes .envelope:hover {
-            transform: translateY(-2px);
-          }
-          #wishes .envelope .paper {
-            position: absolute;
-            inset: 12px;
-            border-radius: 12px;
-            border: 1px dashed rgba(255, 77, 109, 0.45);
-          }
-          #wishes .flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 52%;
-            background: linear-gradient(180deg, #ffd3dd 0%, #ffc0ce 100%);
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            transform-origin: top center;
-            transition: transform 0.5s ease;
-          }
-          #wishes .envelope.opened .flap {
-            transform: rotateX(180deg);
-          }
-          #wishes .seal {
-            position: absolute;
-            top: 44%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-          #wishes .seal-heart {
-            width: 54px;
-            height: 54px;
-            border-radius: 9999px;
-            background: radial-gradient(circle at 30% 30%, #ff7a94, #ff4d6d);
-            display: grid;
-            place-items: center;
-            color: #fff;
-            box-shadow: 0 8px 18px rgba(255, 77, 109, 0.4);
-            animation: heartbeat 1.6s ease-in-out infinite;
-          }
-          #wishes .seal-heart i {
-            font-size: 22px;
-          }
-          #wishes .seal-glow {
-            position: absolute;
-            inset: -10px;
-            border-radius: 9999px;
-            background: conic-gradient(
-              from 0deg at 50% 50%,
-              rgba(255, 176, 196, 0.55),
-              rgba(255, 255, 255, 0) 30%
-            );
-            filter: blur(8px);
-            z-index: -1;
-          }
-          #wishes .envelope-hint {
-            position: absolute;
-            bottom: -38px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9rem;
-            color: #6b7280;
-          }
-          #wishDialog {
-            border: none;
-            border-radius: 16px;
-            padding: 0;
-            max-width: min(92vw, 720px);
-          }
-          #wishDialog::backdrop {
-            background: rgba(0, 0, 0, 0.65);
-          }
-          #wishes .wish-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-          }
-          #wishes .wish-card .inner {
-            position: relative;
-            padding: 26px;
-            background: #fff;
-          }
-          #wishes .wish-card .ring {
-            position: absolute;
-            inset: -2px;
-            border-radius: 18px;
-            background: conic-gradient(from 0deg, #fb7185, #a78bfa, #fb7185);
-            filter: blur(0.5px);
-            z-index: 0;
-            animation: spin 8s linear infinite;
-          }
-          #wishes .wish-card .content {
-            position: relative;
-            z-index: 1;
-          }
-          @keyframes heartbeat {
-            0% {
-              transform: scale(1);
-            }
-            25% {
-              transform: scale(1.12);
-            }
-            50% {
-              transform: scale(1);
-            }
-            75% {
-              transform: scale(1.08);
-            }
-            100% {
-              transform: scale(1);
-            }
-          }
-        </style>
-
-        <!-- Amplop -->
-        <div class="envelope-wrap">
+  <!-- About -->
+  <section id="about" class="py-16 px-4 bg-white/70">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="text-center text-3xl md:text-4xl font-bold mb-12">
+        Tentang <span class="text-pink-500">Kamu</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="reveal">
           <div
-            id="envelopeOpen"
-            class="envelope"
-            role="button"
-            aria-label="Buka amplop ucapan"
-            tabindex="0"
-          >
-            <div class="flap"></div>
-            <div class="paper"></div>
-            <div class="seal">
-              <div class="seal-heart">
-                <i class="fa-solid fa-heart"></i><span class="seal-glow"></span>
-              </div>
+            class="relative mx-auto h-90 w-80 overflow-hidden rounded-full bg-gradient-to-br from-pink-200 to-purple-200 shadow-2xl">
+            <img src="image/image1.jpg" alt="Foto pasangan tersayang dengan senyuman manis memakai topi ulang tahun"
+              class="h-full w-full object-cover" />
+            <div class="absolute -bottom-2 -right-2 rounded-full bg-pink-500 p-3 text-white shadow-lg">
+              <i class="fa-solid fa-gift"></i>
             </div>
-            <span class="envelope-hint">Ketuk untuk membuka</span>
           </div>
         </div>
-
-        <!-- Popup ucapan -->
-        <dialog id="wishDialog">
-          <div class="wish-card">
-            <div class="ring"></div>
-            <div class="inner">
-              <div class="content text-center">
-                <div class="mb-4 text-3xl text-pink-400">
+        <div class="space-y-6 reveal">
+          <div class="glass rounded-2xl p-6 shadow-sm">
+            <h3 class="mb-4 text-2xl font-semibold">Data Diri</h3>
+            <div class="grid gap-4">
+              <div class="flex gap-4">
+                <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <div>
+                  <p class="font-medium">Nama Lengkap</p>
+                  <p class="text-gray-600">Nisak Khusnul Khatimah</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
+                  <i class="fa-solid fa-cake-candles"></i>
+                </div>
+                <div>
+                  <p class="font-medium">Tanggal Lahir</p>
+                  <p class="text-gray-600">28 September 2005</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <div>
+                  <p class="font-medium">Zodiak</p>
+                  <p class="text-gray-600">Libra</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="rounded-lg bg-pink-100 p-2 text-pink-500">
                   <i class="fa-solid fa-heart"></i>
                 </div>
-                <h3 class="mb-2 text-2xl font-semibold">
-                  Untuk NISAK KHUSNUL KHATIMAH
-                </h3>
-                <p
-                  class="mx-auto max-w-2xl text-lg md:text-xl italic text-gray-700 mb-6"
-                >
-                  "Selamat ulang tahun sayangku! Terima kasih telah hadir dalam
-                  hidupku dan menjadi cahaya yang selalu menerangi hariku.
-                  Setiap momen bersamamu adalah hadiah terindah yang pernah
-                  kumiliki. Semoga di usia yang baru ini, kamu selalu diberikan
-                  kesehatan, kebahagiaan, dan kesuksesan dalam segala hal. Aku
-                  akan selalu ada untukmu, sekarang dan selamanya."
-                </p>
-                <p class="text-gray-600">— ABDUL KADER, 28 september 2025</p>
-                <div class="mt-6 flex justify-center">
-                  <button
-                    id="closeWish"
-                    class="rounded-full bg-pink-500 px-5 py-2.5 text-white shadow hover:bg-pink-600"
-                  >
-                    Tutup
-                  </button>
+                <div>
+                  <p class="font-medium">Hobi</p>
+                  <p class="text-gray-600">Tidur</p>
                 </div>
               </div>
             </div>
           </div>
-        </dialog>
+          <div class="rounded-2xl bg-purple-50 p-6 shadow-sm">
+            <h3 class="mb-4 text-2xl font-semibold">
+              Hal yang Kusuka Darimu
+            </h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+              <li>Senyum manismu yang selalu membuat hariku cerah</li>
+              <li>Cara kamu peduli ke diriku</li>
+              <li>Ketulusan hatimu dalam setiap hal yang kamu lakukan</li>
+              <li>Kebiasaan unikmu yang membuatku selalu tersenyum</li>
+              <li>Caramu memahami dan menerima segala kekuranganku</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Script khusus amplop (hanya di section ini) -->
-        <script>
-          (function () {
-            const env = document.getElementById("envelopeOpen");
-            const wishDialog = document.getElementById("wishDialog");
-            const closeWish = document.getElementById("closeWish");
+  <!-- Gallery -->
+  <section id="gallery" class="py-16 px-4 bg-gradient-to-br from-purple-50 to-pink-50">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="text-center text-3xl md:text-4xl font-bold mb-3">
+        Kenangan <span class="text-pink-500">Kita</span>
+      </h2>
+      <p class="mx-auto mb-10 max-w-2xl text-center text-gray-600">
+        Momen-momen berharga yang telah kita lalui bersama
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Reusable gallery card -->
+        <template id="tplPhoto">
+          <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer">
+            <div class="h-64 overflow-hidden">
+              <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            </div>
+            <div
+              class="absolute inset-0 flex items-end bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <div class="p-4 text-white">
+                <p class="font-medium caption"></p>
+                <p class="text-sm date"></p>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div id="gridPhotos" class="contents"></div>
+      </div>
+    </div>
+  </section>
 
-            env?.addEventListener("click", () => {
-              env.classList.add("opened");
-              setTimeout(() => wishDialog.showModal(), 380);
-            });
+  <!-- Wishes -->
+  <!-- Wishes (Amplop dengan popup ucapan) -->
+  <section id="wishes" class="py-16 px-4 bg-white">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">
+        Ucapan <span class="text-pink-500">Spesial</span>
+      </h2>
+      <p class="mb-8 text-gray-600">Klik amplop untuk membuka ucapan ❤️</p>
 
-            closeWish?.addEventListener("click", () => {
+      <!-- --- Styles khusus amplop (dibatasi di dalam section) --- -->
+      <style>
+        #wishes .envelope-wrap {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        #wishes .envelope {
+          position: relative;
+          width: 280px;
+          height: 180px;
+          border-radius: 16px;
+          background: linear-gradient(135deg,
+              #fff 0%,
+              #fff5f8 60%,
+              #ffe2ea 100%);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+          cursor: pointer;
+          transition: transform 0.25s ease;
+        }
+
+        #wishes .envelope:hover {
+          transform: translateY(-2px);
+        }
+
+        #wishes .envelope .paper {
+          position: absolute;
+          inset: 12px;
+          border-radius: 12px;
+          border: 1px dashed rgba(255, 77, 109, 0.45);
+        }
+
+        #wishes .flap {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 52%;
+          background: linear-gradient(180deg, #ffd3dd 0%, #ffc0ce 100%);
+          clip-path: polygon(0 0, 100% 0, 50% 100%);
+          transform-origin: top center;
+          transition: transform 0.5s ease;
+        }
+
+        #wishes .envelope.opened .flap {
+          transform: rotateX(180deg);
+        }
+
+        #wishes .seal {
+          position: absolute;
+          top: 44%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        #wishes .seal-heart {
+          width: 54px;
+          height: 54px;
+          border-radius: 9999px;
+          background: radial-gradient(circle at 30% 30%, #ff7a94, #ff4d6d);
+          display: grid;
+          place-items: center;
+          color: #fff;
+          box-shadow: 0 8px 18px rgba(255, 77, 109, 0.4);
+          animation: heartbeat 1.6s ease-in-out infinite;
+        }
+
+        #wishes .seal-heart i {
+          font-size: 22px;
+        }
+
+        #wishes .seal-glow {
+          position: absolute;
+          inset: -10px;
+          border-radius: 9999px;
+          background: conic-gradient(from 0deg at 50% 50%,
+              rgba(255, 176, 196, 0.55),
+              rgba(255, 255, 255, 0) 30%);
+          filter: blur(8px);
+          z-index: -1;
+        }
+
+        #wishes .envelope-hint {
+          position: absolute;
+          bottom: -38px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.9rem;
+          color: #6b7280;
+        }
+
+        #wishDialog {
+          border: none;
+          border-radius: 16px;
+          padding: 0;
+          max-width: min(92vw, 720px);
+        }
+
+        #wishDialog::backdrop {
+          background: rgba(0, 0, 0, 0.65);
+        }
+
+        #wishes .wish-card {
+          position: relative;
+          overflow: hidden;
+          border-radius: 16px;
+        }
+
+        #wishes .wish-card .inner {
+          position: relative;
+          padding: 26px;
+          background: #fff;
+        }
+
+        #wishes .wish-card .ring {
+          position: absolute;
+          inset: -2px;
+          border-radius: 18px;
+          background: conic-gradient(from 0deg, #fb7185, #a78bfa, #fb7185);
+          filter: blur(0.5px);
+          z-index: 0;
+          animation: spin 8s linear infinite;
+        }
+
+        #wishes .wish-card .content {
+          position: relative;
+          z-index: 1;
+        }
+
+        @keyframes heartbeat {
+          0% {
+            transform: scale(1);
+          }
+
+          25% {
+            transform: scale(1.12);
+          }
+
+          50% {
+            transform: scale(1);
+          }
+
+          75% {
+            transform: scale(1.08);
+          }
+
+          100% {
+            transform: scale(1);
+          }
+        }
+      </style>
+
+      <!-- Amplop -->
+      <div class="envelope-wrap">
+        <div id="envelopeOpen" class="envelope" role="button" aria-label="Buka amplop ucapan" tabindex="0">
+          <div class="flap"></div>
+          <div class="paper"></div>
+          <div class="seal">
+            <div class="seal-heart">
+              <i class="fa-solid fa-heart"></i><span class="seal-glow"></span>
+            </div>
+          </div>
+          <span class="envelope-hint">Ketuk untuk membuka</span>
+        </div>
+      </div>
+
+      <!-- Popup ucapan -->
+      <dialog id="wishDialog">
+        <div class="wish-card">
+          <div class="ring"></div>
+          <div class="inner">
+            <div class="content text-center">
+              <div class="mb-4 text-3xl text-pink-400">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h3 class="mb-2 text-2xl font-semibold">
+                Untuk NISAK KHUSNUL KHATIMAH
+              </h3>
+              <p class="mx-auto max-w-2xl text-lg md:text-xl italic text-gray-700 mb-6">
+                "Selamat ulang tahun sayangku! Terima kasih telah hadir dalam
+                hidupku dan menjadi cahaya yang selalu menerangi hariku.
+                Setiap momen bersamamu adalah hadiah terindah yang pernah
+                kumiliki. Semoga di usia yang baru ini, kamu selalu diberikan
+                kesehatan, kebahagiaan, dan kesuksesan dalam segala hal. Aku
+                akan selalu ada untukmu, sekarang dan selamanya."
+              </p>
+              <p class="text-gray-600">— ABDUL KADER, 28 september 2025</p>
+              <div class="mt-6 flex justify-center">
+                <button id="closeWish" class="rounded-full bg-pink-500 px-5 py-2.5 text-white shadow hover:bg-pink-600">
+                  Tutup
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Script khusus amplop (hanya di section ini) -->
+      <script>
+        (function () {
+          const env = document.getElementById("envelopeOpen");
+          const wishDialog = document.getElementById("wishDialog");
+          const closeWish = document.getElementById("closeWish");
+
+          env?.addEventListener("click", () => {
+            env.classList.add("opened");
+            setTimeout(() => wishDialog.showModal(), 380);
+          });
+
+          closeWish?.addEventListener("click", () => {
+            wishDialog.close();
+            env.classList.remove("opened");
+          });
+
+          wishDialog?.addEventListener("click", (e) => {
+            if (e.target === wishDialog) {
               wishDialog.close();
               env.classList.remove("opened");
-            });
+            }
+          });
 
-            wishDialog?.addEventListener("click", (e) => {
-              if (e.target === wishDialog) {
-                wishDialog.close();
-                env.classList.remove("opened");
-              }
-            });
+          // akses keyboard
+          env?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              env.click();
+            }
+          });
+        })();
+      </script>
+    </div>
+  </section>
 
-            // akses keyboard
-            env?.addEventListener("keydown", (e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                env.click();
-              }
-            });
-          })();
-        </script>
-      </div>
-    </section>
+  <!-- Footer -->
+  <footer class="border-t border-white/60 bg-white/60">
+    <div class="mx-auto max-w-7xl px-4 py-10 text-center text-sm text-gray-600">
+      Dibuat dengan <i class="fa-solid fa-heart text-pink-500"></i> untuk
+      orang terspesial.
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/60 bg-white/60">
-      <div
-        class="mx-auto max-w-7xl px-4 py-10 text-center text-sm text-gray-600"
-      >
-        Dibuat dengan <i class="fa-solid fa-heart text-pink-500"></i> untuk
-        orang terspesial.
-      </div>
-    </footer>
+  <!-- Lightbox (simple) -->
+  <dialog id="lightbox" class="backdrop:bg-black/70 rounded-xl p-0">
+    <img id="lightImg" alt="Foto kenangan" class="max-h-[85vh] w-full rounded-xl object-contain" />
+  </dialog>
 
-    <!-- Lightbox (simple) -->
-    <dialog id="lightbox" class="backdrop:bg-black/70 rounded-xl p-0">
-      <img
-        id="lightImg"
-        alt="Foto kenangan"
-        class="max-h-[85vh] w-full rounded-xl object-contain"
-      />
-    </dialog>
-
-   <script>
-  // Mobile menu
-  const mobileBtn = document.getElementById("mobileBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  mobileBtn?.addEventListener("click", () =>
-    mobileMenu.classList.toggle("hidden")
-  );
-
-  // Reveal on scroll
-  const onScrollReveal = () => {
-    const els = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("revealed");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
+  <script>
+    // Mobile menu
+    const mobileBtn = document.getElementById("mobileBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    mobileBtn?.addEventListener("click", () =>
+      mobileMenu.classList.toggle("hidden")
     );
-    els.forEach((el) => io.observe(el));
-  };
-  onScrollReveal();
 
-  // Gallery data
-  const photos = [
-    {
-      src: "image/1.jpg",
-      caption: "Hari yang Cerah Bersamamu",
-    },
-    {
-      src: "image/2.jpg",
-      caption: "Perayaan Spesial",
-    },
-    {
-      src: "image/3.jpg",
-      caption: "Senja di Pantai",
-    },
-    {
-      src: "image/4.jpg",
-      caption: "Hari yang Romantis",
-    },
-    {
-      src: "image/5.jpg",
-      caption: "Tertawa Bersama",
-    },
-    {
-      src: "image/6.png",
-      caption: "Petualangan Bersama",
-    },
-  ];
-  const tpl = document.getElementById("tplPhoto");
-  const grid = document.getElementById("gridPhotos");
-  const lightbox = document.getElementById("lightbox");
-  const lightImg = document.getElementById("lightImg");
-  photos.forEach((p) => {
-    const node = tpl.content.cloneNode(true);
-    const img = node.querySelector("img");
-    node.querySelector(".caption").textContent = p.caption;
-    node.querySelector(".date").textContent = p.date;
-    img.src = p.src;
-    img.alt = p.caption;
-    img.addEventListener("click", () => {
-      lightImg.src = p.src;
-      lightbox.showModal();
-    });
-    grid.appendChild(node);
-  });
-  lightbox?.addEventListener("click", (e) => {
-    if (e.target === lightbox) lightbox.close();
-  });
-
-  // Confetti (canvas-free) — akan dipicu saat klik tombol "Rayakan!"
-  const btn = document.getElementById("btnConfetti");
-  btn?.addEventListener("click", (e) => {
-    // Confetti sparkle
-    const make = (x, y) => {
-      const s = document.createElement("span");
-      s.className = "sparkle";
-      s.style.left = x + "px";
-      s.style.top = y + "px";
-      const ang = Math.random() * Math.PI * 2;
-      const dist = 60 + Math.random() * 120;
-      s.style.setProperty("--sx", Math.cos(ang) * dist + "px");
-      s.style.setProperty("--sy", Math.sin(ang) * dist + "px");
-      document.body.appendChild(s);
-      setTimeout(() => s.remove(), 800);
+    // Reveal on scroll
+    const onScrollReveal = () => {
+      const els = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("revealed");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      els.forEach((el) => io.observe(el));
     };
-    const { clientX, clientY } = e;
-    for (let i = 0; i < 40; i++)
-      make(clientX || window.innerWidth / 2, clientY || 120);
+    onScrollReveal();
 
-    // Mulai show balon saat tombol diklik
-    startBalloonShow();
+    // Gallery data
+    const photos = [
+      {
+        src: "image/1.jpg",
+        caption: "Hari yang Cerah Bersamamu",
+      },
+      {
+        src: "image/2.jpg",
+        caption: "Perayaan Spesial",
+      },
+      {
+        src: "image/3.jpg",
+        caption: "Senja di Pantai",
+      },
+      {
+        src: "image/4.jpg",
+        caption: "Hari yang Romantis",
+      },
+      {
+        src: "image/5.jpg",
+        caption: "Tertawa Bersama",
+      },
+      {
+        src: "image/6.png",
+        caption: "Petualangan Bersama",
+      },
+    ];
+    const tpl = document.getElementById("tplPhoto");
+    const grid = document.getElementById("gridPhotos");
+    const lightbox = document.getElementById("lightbox");
+    const lightImg = document.getElementById("lightImg");
+    photos.forEach((p) => {
+      const node = tpl.content.cloneNode(true);
+      const img = node.querySelector("img");
+      node.querySelector(".caption").textContent = p.caption;
+      node.querySelector(".date").textContent = p.date;
+      img.src = p.src;
+      img.alt = p.caption;
+      img.addEventListener("click", () => {
+        lightImg.src = p.src;
+        lightbox.showModal();
+      });
+      grid.appendChild(node);
+    });
+    lightbox?.addEventListener("click", (e) => {
+      if (e.target === lightbox) lightbox.close();
+    });
+
+    // Confetti (canvas-free) — akan dipicu saat klik tombol "Rayakan!"
+    const btn = document.getElementById("btnConfetti");
+    btn?.addEventListener("click", (e) => {
+      // Confetti sparkle
+      const make = (x, y) => {
+        const s = document.createElement("span");
+        s.className = "sparkle";
+        s.style.left = x + "px";
+        s.style.top = y + "px";
+        const ang = Math.random() * Math.PI * 2;
+        const dist = 60 + Math.random() * 120;
+        s.style.setProperty("--sx", Math.cos(ang) * dist + "px");
+        s.style.setProperty("--sy", Math.sin(ang) * dist + "px");
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 800);
+      };
+      const { clientX, clientY } = e;
+      for (let i = 0; i < 40; i++)
+        make(clientX || window.innerWidth / 2, clientY || 120);
+
+      // Mulai show balon saat tombol diklik
+      startBalloonShow();
+    });
+
+    // --- Floating Balloons (dipicu hanya saat klik tombol) ---
+    const balloonLayer = document.getElementById("balloons");
+    const colors = ["#ff6b81", "#f472b6", "#f59e0b", "#60a5fa", "#34d399", "#a78bfa"];
+
+    function spawnBalloon() {
+      const b = document.createElement("div");
+      b.className = "balloon";
+      const size = 24 + Math.random() * 22; // px
+      b.style.width = size + "px";
+      b.style.height = size * 1.35 + "px";
+      b.style.left = Math.random() * 100 + "vw";
+      b.style.background = colors[Math.floor(Math.random() * colors.length)];
+      b.style.setProperty("--drift", Math.random() * 80 - 40 + "vw");
+      b.style.animation = `rise ${10 + Math.random() * 8}s linear forwards`;
+      const shine = document.createElement("span");
+      shine.className = "shine";
+      b.appendChild(shine);
+      balloonLayer.appendChild(b);
+      setTimeout(() => b.remove(), 19000); // cleanup
+    }
+
+    // >>> Tidak ada balon otomatis saat load
+    // (for/interval awal & window click dihapus)
+
+    // Tampilkan balon hanya sementara (burst + short stream) saat tombol diklik
+    let balloonStreamTimer = null;
+    let balloonStopTimer = null;
+
+    function startBalloonShow() {
+      // Burst cepat
+      for (let i = 0; i < 16; i++) setTimeout(spawnBalloon, i * 80);
+
+      // Stream singkat 6 detik
+      clearInterval(balloonStreamTimer);
+      clearTimeout(balloonStopTimer);
+      balloonStreamTimer = setInterval(spawnBalloon, 250);
+      balloonStopTimer = setTimeout(() => clearInterval(balloonStreamTimer), 6000);
+    }
+  </script>
+<script>
+  // === Musik Happy Birthday ===
+  const bgm = document.getElementById('bgm');
+  const bgmToggle = document.getElementById('bgmToggle');
+
+  async function tryAutoPlay() {
+    if (!bgm) return;
+    try {
+      await bgm.play();                // coba autoplay
+      bgmToggle?.classList.remove('opacity-0');
+      bgmToggle?.setAttribute('aria-pressed', 'true');
+    } catch (err) {
+      // Autoplay diblokir -> tampilkan tombol & minta 1x interaksi
+      bgmToggle?.classList.remove('opacity-0');
+      bgmToggle?.classList.add('animate-bounce');
+      const resumeOnce = () => {
+        bgm.play().catch(()=>{});
+        bgmToggle?.classList.remove('animate-bounce');
+        bgmToggle?.setAttribute('aria-pressed', 'true');
+        window.removeEventListener('pointerdown', resumeOnce, { once: true });
+      };
+      window.addEventListener('pointerdown', resumeOnce, { once: true });
+    }
+  }
+
+  // Klik tombol play/pause
+  bgmToggle?.addEventListener('click', () => {
+    if (bgm.paused) {
+      bgm.play().catch(()=>{});
+      bgmToggle.setAttribute('aria-pressed', 'true');
+    } else {
+      bgm.pause();
+      bgmToggle.setAttribute('aria-pressed', 'false');
+    }
   });
 
-  // --- Floating Balloons (dipicu hanya saat klik tombol) ---
-  const balloonLayer = document.getElementById("balloons");
-  const colors = ["#ff6b81", "#f472b6", "#f59e0b", "#60a5fa", "#34d399", "#a78bfa"];
+  // Opsional: jeda musik saat tab disembunyikan, lanjutkan saat kembali
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      bgm.pause();
+      bgmToggle?.setAttribute('aria-pressed', 'false');
+    } else {
+      // jangan paksa play agar tidak ganggu; user bisa klik tombol
+    }
+  });
 
-  function spawnBalloon() {
-    const b = document.createElement("div");
-    b.className = "balloon";
-    const size = 24 + Math.random() * 22; // px
-    b.style.width = size + "px";
-    b.style.height = size * 1.35 + "px";
-    b.style.left = Math.random() * 100 + "vw";
-    b.style.background = colors[Math.floor(Math.random() * colors.length)];
-    b.style.setProperty("--drift", Math.random() * 80 - 40 + "vw");
-    b.style.animation = `rise ${10 + Math.random() * 8}s linear forwards`;
-    const shine = document.createElement("span");
-    shine.className = "shine";
-    b.appendChild(shine);
-    balloonLayer.appendChild(b);
-    setTimeout(() => b.remove(), 19000); // cleanup
-  }
-
-  // >>> Tidak ada balon otomatis saat load
-  // (for/interval awal & window click dihapus)
-
-  // Tampilkan balon hanya sementara (burst + short stream) saat tombol diklik
-  let balloonStreamTimer = null;
-  let balloonStopTimer = null;
-
-  function startBalloonShow() {
-    // Burst cepat
-    for (let i = 0; i < 16; i++) setTimeout(spawnBalloon, i * 80);
-
-    // Stream singkat 6 detik
-    clearInterval(balloonStreamTimer);
-    clearTimeout(balloonStopTimer);
-    balloonStreamTimer = setInterval(spawnBalloon, 250);
-    balloonStopTimer = setTimeout(() => clearInterval(balloonStreamTimer), 6000);
-  }
+  // Mulai saat halaman siap
+  window.addEventListener('load', tryAutoPlay);
 </script>
 
-  </body>
+</body>
+
 </html>
